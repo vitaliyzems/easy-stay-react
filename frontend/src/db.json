@@ -1,0 +1,278 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "role_id": 0,
+      "email": "admin@mail.ru",
+      "password": "admin123",
+      "name": "Admin",
+      "registed_at": "2024.08.01, 14:34:10"
+    },
+    {
+      "email": "vitalyazems@gmail.com",
+      "password": "asdasd",
+      "name": "Vitaliy",
+      "registed_at": "29.09.2024, 18:33:29",
+      "role_id": 1,
+      "id": 1
+    }
+  ],
+  "sessions": [
+    {
+      "hash": "0.60349925683447791513458469125907868146896362304688",
+      "user": {
+        "id": 1,
+        "email": "vitalyazems@gmail.com",
+        "password": "asdasd",
+        "name": "Vitaliy",
+        "registedAt": "29.09.2024, 18:33:29",
+        "roleId": 1
+      },
+      "id": 1
+    }
+  ],
+  "roles": [
+    {
+      "id": 0,
+      "name": "admin"
+    },
+    {
+      "id": 1,
+      "name": "user"
+    },
+    {
+      "id": 2,
+      "name": "guest"
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Grand Plaza Hotel",
+      "address": "New York, USA",
+      "image_url": "https://fastly.picsum.photos/id/257/460/300.jpg?hmac=dErCKCrwUuINSTqE4XneQ9O7YAjGolzMveFUt4pVDmM"
+    },
+    {
+      "id": 2,
+      "name": "Sea Breeze Resort",
+      "address": "Miami, USA",
+      "image_url": "https://fastly.picsum.photos/id/193/460/300.jpg?hmac=MkohAYOb8i_VxsS0_q62MpnuTf2x2q3wuiLg4X7UTTI"
+    },
+    {
+      "id": 3,
+      "name": "Mountain Lodge",
+      "address": "Aspen, USA",
+      "image_url": "https://fastly.picsum.photos/id/979/460/300.jpg?hmac=KNvlowrG-UdjXzz0QAVhqvbmYj0RqZTUGRmMkkRIfcE"
+    },
+    {
+      "id": 4,
+      "name": "Urban Retreat",
+      "address": "Chicago, USA",
+      "image_url": "https://fastly.picsum.photos/id/410/460/300.jpg?hmac=s1DsBwQvpiSjMadpkzmkHrdCj4s6HYyDyDgXln-zdP8"
+    },
+    {
+      "id": 5,
+      "name": "Desert Oasis",
+      "address": "Las Vegas, USA",
+      "image_url": "https://fastly.picsum.photos/id/448/460/300.jpg?hmac=Fm1rpwtyScTy7wOo6849CZ-je_K5jSgljOXY9gyi1Mo"
+    },
+    {
+      "id": 6,
+      "name": "Royal Palace Hotel",
+      "address": "London, UK",
+      "image_url": "https://fastly.picsum.photos/id/862/460/300.jpg?hmac=v_kpYK2iTb_442tDbplF8fr2eagH1OdDCnJyB0G6E9Y"
+    },
+    {
+      "id": 7,
+      "name": "Alpine Resort",
+      "address": "Zermatt, Switzerland",
+      "image_url": "https://fastly.picsum.photos/id/898/460/300.jpg?hmac=kEe50aER0fhJDqVgEccAkd5kb21AEV3VlmlAkvl6AV0"
+    },
+    {
+      "id": 8,
+      "name": "Beachfront Inn",
+      "address": "Malibu, USA",
+      "image_url": "https://fastly.picsum.photos/id/764/460/300.jpg?hmac=tbqnIIA1kydS_Gnq5y4CD_0jaDGV9JpTnon2J0wUvMk"
+    },
+    {
+      "id": 9,
+      "name": "City Central Hotel",
+      "address": "Tokyo, Japan",
+      "image_url": "https://fastly.picsum.photos/id/983/460/300.jpg?hmac=mtoN9-INNwpRp_7Z2cAMkQ3XuMCONFvODJu0DfFSzQ8"
+    },
+    {
+      "id": 10,
+      "name": "Riverside Lodge",
+      "address": "Kyoto, Japan",
+      "image_url": "https://fastly.picsum.photos/id/947/460/300.jpg?hmac=1xD6V2iZM3crpStsIGIMxgrI6gJ0tS8kE01QKgq5CQo"
+    }
+  ],
+  "rooms": [
+    {
+      "id": 101,
+      "hotel_id": 1,
+      "type": "Deluxe Room",
+      "price": 250,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 102,
+      "hotel_id": 1,
+      "type": "Suite",
+      "price": 400,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 201,
+      "hotel_id": 2,
+      "type": "Standard Room",
+      "price": 150,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 202,
+      "hotel_id": 2,
+      "type": "Ocean View Room",
+      "price": 300,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 203,
+      "hotel_id": 2,
+      "type": "Presidential Suite",
+      "price": 600,
+      "image_url": "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 301,
+      "hotel_id": 3,
+      "type": "Single Room",
+      "price": 120,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 302,
+      "hotel_id": 3,
+      "type": "Double Room",
+      "price": 200,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 401,
+      "hotel_id": 4,
+      "type": "Executive Room",
+      "price": 180,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 402,
+      "hotel_id": 4,
+      "type": "Deluxe Suite",
+      "price": 350,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 501,
+      "hotel_id": 5,
+      "type": "Standard Room",
+      "price": 130,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 502,
+      "hotel_id": 5,
+      "type": "Penthouse Suite",
+      "price": 700,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 601,
+      "hotel_id": 6,
+      "type": "Queen Room",
+      "price": 220,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 602,
+      "hotel_id": 6,
+      "type": "King Suite",
+      "price": 500,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 701,
+      "hotel_id": 7,
+      "type": "Single Room",
+      "price": 110,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 702,
+      "hotel_id": 7,
+      "type": "Double Room",
+      "price": 180,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 703,
+      "hotel_id": 7,
+      "type": "Family Suite",
+      "price": 320,
+      "image_url": "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 801,
+      "hotel_id": 8,
+      "type": "Standard Room",
+      "price": 140,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 802,
+      "hotel_id": 8,
+      "type": "Ocean View Suite",
+      "price": 400,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 901,
+      "hotel_id": 9,
+      "type": "Standard Room",
+      "price": 200,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 902,
+      "hotel_id": 9,
+      "type": "Business Suite",
+      "price": 350,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      "id": 1001,
+      "hotel_id": 10,
+      "type": "Japanese Style Room",
+      "price": 180,
+      "image_url": "https://media.istockphoto.com/id/1370825295/photo/modern-hotel-room-with-double-bed-night-tables-tv-set-and-cityscape-from-the-window.jpg?s=1024x1024&w=is&k=20&c=PQicQnwFiHZ7GRUQRuHNguiG84_7HcEftHB-bjNbgS0="
+    },
+    {
+      "id": 1002,
+      "hotel_id": 10,
+      "type": "Luxury Suite",
+      "price": 450,
+      "image_url": "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    }
+  ],
+  "bookings": [
+    {
+      "user_id": 1,
+      "hotel_id": 3,
+      "room_id": 302,
+      "start_date": "2024-10-07",
+      "end_date": "2024-10-08",
+      "total_price": 200,
+      "id": 1
+    }
+  ],
+  "comments": []
+}

@@ -1,0 +1,3 @@
+export const DESCRIPTION_TEXT = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, reiciendis quod dolor corrupti nihil laudantium facilis delectus nobis voluptatum architecto aspernatur non debitis illo, consectetur minima cumque necessitatibus ipsam quaerat?
+Accusamus molestiae rem aut est quos dolorum minima officia obcaecati. Eveniet sapiente exercitationem iste laboriosam aliquam. Deserunt ea doloribus aspernatur accusamus culpa aperiam rerum ipsa exercitationem nulla excepturi! Voluptatum, pariatur.
+Ipsa omnis, amet iure ut ducimus laudantium? Molestias blanditiis ullam quis. Veritatis, cum nisi. Itaque cum nam at vero architecto fugiat earum officia non quisquam. Recusandae accusantium dolore delectus corporis?`;
