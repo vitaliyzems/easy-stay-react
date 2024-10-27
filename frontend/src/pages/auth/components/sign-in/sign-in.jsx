@@ -6,13 +6,13 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import { server } from '../../../../bff';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../../actions';
 import { selectUserRole } from '../../../../selectors';
-import { ROLE } from '../../../../constants';
+import { METHOD, ROLE } from '../../../../constants';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useResetForm } from '../../../../hooks';
+import { request } from '../../../../utils';
 
 const SignInFormSchema = yup.object().shape({
   email: yup
@@ -53,7 +53,10 @@ const SignInContainer = ({ className, type, setType }) => {
   useResetForm(reset);
 
   const onSubmit = ({ email, password }) => {
-    server.signIn(email, password).then(({ error, res: user }) => {
+    request('/api/login', METHOD.POST, {
+      email,
+      password,
+    }).then(({ error, res: user }) => {
       if (error) {
         setServerError(`Ошибка запроса: ${error}`);
         return;

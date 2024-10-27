@@ -6,13 +6,13 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../../../bff';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../../actions';
 import { useResetForm } from '../../../../hooks';
 import { selectUserRole } from '../../../../selectors';
-import { ROLE } from '../../../../constants';
+import { METHOD, ROLE } from '../../../../constants';
 import { Navigate, useLocation } from 'react-router-dom';
+import { request } from '../../../../utils';
 
 const SignUpFormSchema = yup.object().shape({
   email: yup
@@ -63,15 +63,17 @@ const SignUpContainer = ({ className, type, setType }) => {
   useResetForm(reset);
 
   const onSubmit = ({ email, password, name }) => {
-    server.signUp(email, password, name).then(({ error, res: user }) => {
-      if (error) {
-        setServerError(`Ошибка запроса: ${error}`);
-        return;
-      }
+    request('/api/register', METHOD.POST, { email, name, password }).then(
+      ({ error, res: user }) => {
+        if (error) {
+          setServerError(`Ошибка запроса: ${error}`);
+          return;
+        }
 
-      dispatch(setUser(user));
-      sessionStorage.setItem('userData', JSON.stringify(user));
-    });
+        dispatch(setUser(user));
+        sessionStorage.setItem('userData', JSON.stringify(user));
+      }
+    );
   };
 
   const formError =
