@@ -1,22 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  selectUserId,
-  selectUserName,
-  selectUserSession,
-} from '../../../../selectors';
+import { selectUserId, selectUserName } from '../../../../selectors';
 import { logout } from '../../../../actions';
 
 const HeaderContainer = ({ className }) => {
   const userId = useSelector(selectUserId);
   const userName = useSelector(selectUserName);
-  const session = useSelector(selectUserSession);
 
   const dispatch = useDispatch();
 
   const onLogout = () => {
-    dispatch(logout(session));
+    dispatch(logout());
     sessionStorage.removeItem('userData');
   };
 
