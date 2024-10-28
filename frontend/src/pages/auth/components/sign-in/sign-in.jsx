@@ -56,7 +56,7 @@ const SignInContainer = ({ className, type, setType }) => {
     request('/api/login', METHOD.POST, {
       email,
       password,
-    }).then(({ error, res: user }) => {
+    }).then(({ error, user }) => {
       if (error) {
         setServerError(`Ошибка запроса: ${error}`);
         return;
@@ -71,7 +71,7 @@ const SignInContainer = ({ className, type, setType }) => {
   const errorMessage = formError || serverError;
 
   if (roleId !== ROLE.GUEST) {
-    if (location.state.from) {
+    if (location.state?.from) {
       return (
         <Navigate
           to={`${location.state.from.pathname}${location.state.from.search}`}

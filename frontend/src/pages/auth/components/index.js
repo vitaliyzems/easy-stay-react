@@ -1,1 +1,2 @@
-export * from './auth-form/auth-form';
+export * from './sign-in/sign-in';
+export * from './sign-up/sign-up';

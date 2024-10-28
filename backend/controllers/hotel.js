@@ -1,76 +1,56 @@
 const Hotel = require('../models/Hotel');
+const Booking = require('../models/Booking');
+const Room = require('../models/Room');
 
 // find available hotels
-async function findAvailableHotels(startDate, endDate) {
+async function findAvailableHotels(startDateString, endDateString) {
+  const startDate = new Date(startDateString);
+  const endDate = new Date(endDateString);
+
   // Находим все бронирования, пересекающиеся с заданным периодом
   const bookedRooms = await Booking.find({
-    $or: [
-      { startDate: { $lte: endDate }, endDate: { $gte: startDate } },
-      { startDate: { $gte: startDate, $lte: endDate } },
-      { endDate: { $gte: startDate, $lte: endDate } },
-    ],
-  }).distinct('roomId');
+    start_date: { $lt: endDate }, // Начало бронирования до конца периода поиска
+    end_date: { $gt: startDate }, // Конец бронирования после начала периода поиска
+  }).distinct('room');
 
   // Получаем все номера, кроме забронированных в указанный период
   const availableRooms = await Room.find({ _id: { $nin: bookedRooms } });
 
   // Находим отели, к которым относятся доступные номера
-  const availableHotelIds = availableRooms.map((room) => room.hotelId);
+  const availableHotelIds = availableRooms.map((room) => room.hotel);
   const availableHotels = await Hotel.find({ _id: { $in: availableHotelIds } });
 
   return availableHotels;
 }
 
-// // add
-// async function addPost(post) {
-//   const newPost = await Post.create(post);
+async function getHotelWithAvailableRooms(
+  hotelId,
+  startDateString,
+  endDateString
+) {
+  const startDate = new Date(startDateString);
+  const endDate = new Date(endDateString);
 
-//   await newPost.populate({ path: 'comments', populate: 'author' });
+  // Находим занятые номера по указанным датам
+  const bookedRoomIds = await Booking.find({
+    room: { $exists: true },
+    start_date: { $lt: endDate },
+    end_date: { $gt: startDate },
+  }).distinct('room');
 
-//   return newPost;
-// }
+  // Ищем отель по ID, исключая занятые номера из списка
+  const hotel = await Hotel.findById(hotelId)
+    .populate({
+      path: 'rooms',
+      match: { _id: { $nin: bookedRoomIds } }, // Исключаем занятые номера
+      select: '-hotel', // Исключаем поле hotel, если оно присутствует в номерах
+    })
+    .lean();
 
-// // edit
-// async function editPost(id, post) {
-//   const newPost = await Post.findByIdAndUpdate(id, post, {
-//     returnDocument: 'after',
-//   });
-
-//   await newPost.populate({ path: 'comments', populate: 'author' });
-
-//   return newPost;
-// }
-
-// // delete
-// function deletePost(id) {
-//   return Post.deleteOne({ _id: id });
-// }
-
-// // get list with search and paginate
-// async function getPosts(search = '', limit = 10, page = 1) {
-//   const [posts, count] = await Promise.all([
-//     Post.find({ title: { $regex: search, $options: 'i' } })
-//       .limit(limit)
-//       .skip((page - 1) * limit)
-//       .sort({ createdAt: -1 }),
-//     Post.countDocuments({ title: { $regex: search, $options: 'i' } }),
-//   ]);
-
-//   return { posts, lastPage: Math.ceil(count / limit) };
-// }
-
-// // get item
-// function getPost(id) {
-//   return Post.findById(id).populate({
-//     path: 'comments',
-//     populate: 'author',
-//   });
-// }
+  return hotel;
+}
 
 module.exports = {
-  addPost,
-  deletePost,
-  editPost,
-  getPost,
-  getPosts,
+  findAvailableHotels,
+  getHotelWithAvailableRooms,
 };

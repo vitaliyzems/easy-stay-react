@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { useRequestServer } from '../../hooks';
 import { loadHotelAsync } from '../../actions/load-hotel-async';
 import { selectHotel } from '../../selectors/select-hotel';
 import { ACTION_TYPE } from '../../actions';
 import { DESCRIPTION_TEXT } from '../../constants';
 import { Room } from './components';
+import styled from 'styled-components';
 
 const HotelContainer = ({ className }) => {
   const [searchParams] = useSearchParams();
@@ -20,7 +20,7 @@ const HotelContainer = ({ className }) => {
   const requestServer = useRequestServer();
 
   useEffect(() => {
-    dispatch(loadHotelAsync(requestServer, id, startDate, endDate));
+    dispatch(loadHotelAsync(id, startDate, endDate));
 
     return () => dispatch({ type: ACTION_TYPE.RESET_HOTEL });
   }, [dispatch, requestServer, id, startDate, endDate]);

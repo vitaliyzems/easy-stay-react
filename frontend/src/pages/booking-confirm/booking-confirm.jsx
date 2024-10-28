@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRequestServer } from '../../hooks';
 import { createBookingAsync } from '../../actions';
 
 const BookingConfirmContainer = ({ className }) => {
@@ -9,22 +8,25 @@ const BookingConfirmContainer = ({ className }) => {
   const { userId, hotel, room, startDate, endDate, totalPrice } = booking;
 
   const dispatch = useDispatch();
-  const requestServer = useRequestServer();
   const navigate = useNavigate();
 
-  const bookRoom = () => {
+  const bookRoom = async () => {
     dispatch(
-      createBookingAsync(
-        requestServer,
-        userId,
-        hotel.id,
-        room.id,
-        startDate,
-        endDate,
-        totalPrice
-      )
-    );
-    return navigate('/booking-success');
+      createBookingAsync({
+        startDate: startDate,
+        endDate: endDate,
+        totalPrice: totalPrice,
+        user: userId,
+        hotel: hotel.id,
+        room: room.id,
+      })
+    )
+      .then(() => {
+        return navigate('/booking-success');
+      })
+      .catch((error) => {
+        console.error('Booking failed:', error);
+      });
   };
 
   return (
@@ -33,12 +35,12 @@ const BookingConfirmContainer = ({ className }) => {
 
       <div className="hotel-info">
         <h2>
-          Название отеля:{' '}
+          Название отеля:
           <span className="hotel-name">Отель "{hotel.name}"</span>
         </h2>
+        <img className="hotel-image" src={room.imageUrl} alt={room.type} />
         <p>
           Название комнаты: <span className="room-name">{room.type}</span>
-          <img src={room.imageUrl} alt={room.type} />
         </p>
       </div>
 
@@ -109,6 +111,10 @@ export const BookingConfirm = styled(BookingConfirmContainer)`
     margin-bottom: 20px;
   }
 
+  & .hotel-image {
+    max-width: 50%;
+  }
+
   & .hotel-info,
   & .booking-details,
   & .useful-info,
@@ -149,6 +155,18 @@ export const BookingConfirm = styled(BookingConfirmContainer)`
 
   & .booking-container ul li {
     font-size: 1em;
+  }
+
+  & button {
+    height: 48px;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
   }
 
   @media (max-width: 960px) {

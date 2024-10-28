@@ -1,11 +1,19 @@
+import { useState } from 'react';
+import { SignIn } from './components';
+import { SignUp } from './components';
 import styled from 'styled-components';
-import { AuthForm } from './components';
 
 const AuthContainer = ({ className }) => {
+  const [type, setType] = useState('signIn');
+
   return (
     <div className={className}>
       <div className="auth-container">
-        <AuthForm />
+        {type === 'signIn' ? (
+          <SignIn type={type} setType={setType} />
+        ) : (
+          <SignUp type={type} setType={setType} />
+        )}
       </div>
     </div>
   );

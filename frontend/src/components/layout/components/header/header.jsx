@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { selectUserId, selectUserSession } from '../../../../selectors';
+import {
+  selectUserId,
+  selectUserName,
+  selectUserSession,
+} from '../../../../selectors';
 import { logout } from '../../../../actions';
 
 const HeaderContainer = ({ className }) => {
   const userId = useSelector(selectUserId);
+  const userName = useSelector(selectUserName);
   const session = useSelector(selectUserSession);
 
   const dispatch = useDispatch();
@@ -36,7 +41,11 @@ const HeaderContainer = ({ className }) => {
             <>
               <div className="user-button">
                 <Link to="/profile">
-                  <i className="fa fa-user-circle" />
+                  <i
+                    style={{ marginRight: '5px' }}
+                    className="fa fa-user-circle"
+                  />
+                  {userName}
                 </Link>
               </div>
               <div className="logout-button" onClick={onLogout}>
@@ -109,7 +118,7 @@ export const Header = styled(HeaderContainer)`
   }
 
   & .user-button {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   & .logout-button {

@@ -25,12 +25,6 @@ const RoomSchema = new Schema({
     ref: 'Hotel',
     required: true,
   },
-  bookings: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Booking',
-    },
-  ],
 });
 
 const Room = model('Room', RoomSchema);

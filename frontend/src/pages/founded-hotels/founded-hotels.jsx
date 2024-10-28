@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { HotelCard } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectHotels } from '../../selectors';
-import { useRequestServer } from '../../hooks';
 import { CLOSE_MODAL, loadHotelsAsync, openModal } from '../../actions';
-import styled from 'styled-components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchForm } from '../../components';
 import { calculateDifferenceInDays, formatDate } from '../../utils';
+import styled from 'styled-components';
 
 const FoundedHotelsContainer = ({ className }) => {
   const [searchParams] = useSearchParams();
@@ -17,11 +16,12 @@ const FoundedHotelsContainer = ({ className }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const requestServer = useRequestServer();
 
   useEffect(() => {
-    dispatch(loadHotelsAsync(requestServer, startDate, endDate));
-  }, [dispatch, requestServer, startDate, endDate]);
+    console.log(startDate, endDate);
+
+    dispatch(loadHotelsAsync(startDate, endDate));
+  }, [dispatch, startDate, endDate]);
 
   if (
     !Date.parse(startDate) ||
