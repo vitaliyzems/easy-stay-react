@@ -29,6 +29,8 @@ const BookingConfirmContainer = ({ className }) => {
       });
   };
 
+  console.log(hotel);
+
   return (
     <div className={className}>
       <h1 className="booking-title">Информация о бронировании</h1>
@@ -36,8 +38,12 @@ const BookingConfirmContainer = ({ className }) => {
       <div className="hotel-info">
         <h2>
           Название отеля:
-          <span className="hotel-name">Отель "{hotel.name}"</span>
+          <span className="hotel-name"> "{hotel.name}"</span>
         </h2>
+        <h3>
+          Адрес:
+          <span className="hotel-address"> {hotel.address}</span>
+        </h3>
         <img className="hotel-image" src={room.imageUrl} alt={room.type} />
         <p>
           Название комнаты: <span className="room-name">{room.type}</span>
@@ -52,7 +58,8 @@ const BookingConfirmContainer = ({ className }) => {
             {new Date(startDate).toLocaleDateString('KZ-kz', {
               dateStyle: 'long',
             })}
-          </span>
+          </span>{' '}
+          <b>14:00</b>
         </p>
         <p>
           Дата выезда:{' '}
@@ -60,7 +67,8 @@ const BookingConfirmContainer = ({ className }) => {
             {new Date(endDate).toLocaleDateString('KZ-kz', {
               dateStyle: 'long',
             })}
-          </span>
+          </span>{' '}
+          <b>12:00</b>
         </p>
         <p>
           Общая стоимость поездки:{' '}
@@ -128,6 +136,7 @@ export const BookingConfirm = styled(BookingConfirmContainer)`
   }
 
   & .hotel-name,
+  & .hotel-address,
   & .room-name,
   & .check-in-date,
   & .check-out-date,

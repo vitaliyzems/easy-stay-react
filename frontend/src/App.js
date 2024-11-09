@@ -1,4 +1,4 @@
-import { Layout } from './components';
+import { Error, Layout } from './components';
 import { Route, Routes } from 'react-router-dom';
 import {
   Auth,
@@ -12,6 +12,7 @@ import {
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { ERROR } from './constants/error';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export const App = () => {
         <Route path="/hotel/:id" element={<Hotel />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/booking-success" element={<BookingSuccess />} />
+        <Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
       </Route>
       <Route path="/auth" element={<Auth />} />
     </Routes>

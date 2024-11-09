@@ -18,6 +18,19 @@ const BookingContainer = ({ className, booking, hotel, room }) => {
     dateStyle: 'long',
   });
 
+  const checkStatus = () => {
+    if (Date.parse(booking.startDate) > Date.now()) {
+      return 'upcoming';
+    } else if (
+      Date.parse(booking.startDate) <= Date.now() &&
+      Date.parse(booking.endDate) >= Date.now()
+    ) {
+      return 'inprogress';
+    } else {
+      return 'completed';
+    }
+  };
+
   const onBookingCancel = () => {
     dispatch(
       openModal({
@@ -45,18 +58,21 @@ const BookingContainer = ({ className, booking, hotel, room }) => {
             {startDate} - {endDate}
           </span>
           <span className="total-price">$ {booking.totalPrice}</span>
-          {Date.parse(booking.startDate) > Date.now() ? (
+          {checkStatus() === 'upcoming' && (
             <span className="status upcoming">Предстоящее</span>
-          ) : Date.parse(booking.startDate) <= Date.now() &&
-            Date.parse(booking.endDate) >= Date.now() ? (
+          )}
+          {checkStatus() === 'inprogress' && (
             <span className="status inprogress">В процессе</span>
-          ) : (
+          )}
+          {checkStatus() === 'completed' && (
             <span className="status completed">Завершено</span>
           )}
         </div>
-        <div className="room-button-wrapper">
-          <button onClick={onBookingCancel}>Отменить</button>
-        </div>
+        {checkStatus() === 'upcoming' && (
+          <div className="room-button-wrapper">
+            <button onClick={onBookingCancel}>Отменить</button>
+          </div>
+        )}
       </div>
     </div>
   );

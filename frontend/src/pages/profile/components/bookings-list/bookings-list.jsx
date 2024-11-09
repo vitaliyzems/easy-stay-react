@@ -1,19 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUserBookings } from '../../../../selectors/select-user-bookings';
-import { useEffect } from 'react';
-import { loadUserBookingsAsync } from '../../../../actions';
 import { Booking } from '../booking/booking';
 import styled from 'styled-components';
 
 const BookingsListContainer = ({ className, userId }) => {
   const bookings = useSelector(selectUserBookings);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadUserBookingsAsync(userId));
-  }, [dispatch, userId]);
-
-  if (!bookings || !bookings.length) {
+  if (!bookings || !bookings.length || !userId) {
     return <h3>Загрузка...</h3>;
   }
 
