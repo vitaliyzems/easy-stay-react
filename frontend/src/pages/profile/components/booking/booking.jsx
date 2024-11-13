@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { useRequestServer } from '../../../../hooks';
 import {
   CLOSE_MODAL,
   openModal,
@@ -9,7 +8,6 @@ import styled from 'styled-components';
 
 const BookingContainer = ({ className, booking, hotel, room }) => {
   const dispatch = useDispatch();
-  const requestServer = useRequestServer();
 
   const startDate = new Date(booking.startDate).toLocaleDateString('KZ-kz', {
     dateStyle: 'long',
@@ -36,7 +34,7 @@ const BookingContainer = ({ className, booking, hotel, room }) => {
       openModal({
         text: 'Вы уверены что хотите отменить бронирование?',
         onConfirm: () => {
-          dispatch(removeBookingAsync(requestServer, booking.id));
+          dispatch(removeBookingAsync(booking.id));
           dispatch(CLOSE_MODAL);
         },
         onCancel: () => dispatch(CLOSE_MODAL),

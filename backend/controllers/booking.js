@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Booking = require('../models/Booking');
 
 async function addBooking(booking) {
@@ -12,14 +13,36 @@ async function getUserBookings(userId) {
   }
 
   const userBookings = await Booking.find({ user: userId })
-    .populate('hotel') // Расширяет поле hotel объектом отеля
-    .populate('room') // Расширяет поле room объектом комнаты
+    .populate('hotel')
+    .populate('room')
     .sort({ start_date: -1 });
 
   return userBookings;
 }
 
+async function removeBooking(id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new Error('Invalid booking ID');
+  }
+
+  try {
+    const result = await Booking.findByIdAndDelete(id);
+
+    if (!result) {
+      console.log('Booking not found');
+      return { success: false, message: 'Booking not found' };
+    }
+
+    console.log('Booking successfully deleted');
+    return { success: true, message: 'Booking successfully deleted' };
+  } catch (error) {
+    console.error('Error deleting booking:', error);
+    return { success: false, message: 'Error deleting booking' };
+  }
+}
+
 module.exports = {
   addBooking,
   getUserBookings,
+  removeBooking,
 };

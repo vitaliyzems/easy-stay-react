@@ -26,6 +26,12 @@ const HotelSchema = new Schema({
       ref: 'Room',
     },
   ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 });
 
 const Hotel = model('Hotel', HotelSchema);

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../../../actions';
 import { selectUserRole } from '../../../../selectors';
 import { METHOD, ROLE } from '../../../../constants';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { useResetForm } from '../../../../hooks';
 import { request } from '../../../../utils';
 
@@ -105,6 +105,9 @@ const SignInContainer = ({ className, type, setType }) => {
       <span>{errorMessage}</span>
       <AuthButton type={type} disabled={!!formError} />
       <AuthLink type={type} setType={setType} />
+      <Link to="/" style={{ color: '#007bff' }}>
+        На главную
+      </Link>
     </form>
   );
 };

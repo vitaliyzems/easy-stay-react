@@ -1,4 +1,5 @@
 export * from './select-booking';
+export * from './select-comments';
 export * from './select-hotel';
 export * from './select-hotels';
 export * from './select-modal-is-open';

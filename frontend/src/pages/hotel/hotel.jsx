@@ -6,7 +6,7 @@ import { loadHotelAsync } from '../../actions/load-hotel-async';
 import { selectHotel } from '../../selectors/select-hotel';
 import { ACTION_TYPE } from '../../actions';
 import { DESCRIPTION_TEXT } from '../../constants';
-import { Room } from './components';
+import { Comments, Room } from './components';
 import styled from 'styled-components';
 
 const HotelContainer = ({ className }) => {
@@ -18,6 +18,8 @@ const HotelContainer = ({ className }) => {
 
   const dispatch = useDispatch();
   const requestServer = useRequestServer();
+
+  console.log(hotel);
 
   useEffect(() => {
     dispatch(loadHotelAsync(id, startDate, endDate));
@@ -52,6 +54,7 @@ const HotelContainer = ({ className }) => {
           />
         ))}
       </div>
+      <Comments />
     </div>
   );
 };

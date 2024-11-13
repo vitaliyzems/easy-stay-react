@@ -11,7 +11,7 @@ import { setUser } from '../../../../actions';
 import { useResetForm } from '../../../../hooks';
 import { selectUserRole } from '../../../../selectors';
 import { METHOD, ROLE } from '../../../../constants';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { request } from '../../../../utils';
 
 const SignUpFormSchema = yup.object().shape({
@@ -64,7 +64,7 @@ const SignUpContainer = ({ className, type, setType }) => {
 
   const onSubmit = ({ email, password, name }) => {
     request('/api/register', METHOD.POST, { email, name, password }).then(
-      ({ error, res: user }) => {
+      ({ error, user }) => {
         if (error) {
           setServerError(`Ошибка запроса: ${error}`);
           return;
@@ -137,6 +137,9 @@ const SignUpContainer = ({ className, type, setType }) => {
       <span>{errorMessage}</span>
       <AuthButton type={type} disabled={!!formError} />
       <AuthLink type={type} setType={setType} />
+      <Link to="/" style={{ color: '#007bff' }}>
+        На главную
+      </Link>
     </form>
   );
 };

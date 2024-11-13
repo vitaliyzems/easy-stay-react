@@ -24,6 +24,8 @@ export const App = () => {
       return;
     }
 
+    console.log(currentUserDataJSON === 'undefined');
+
     const currentUserData = JSON.parse(currentUserDataJSON);
 
     dispatch(setUser(currentUserData));

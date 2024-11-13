@@ -1,5 +1,9 @@
 const express = require('express');
-const { addBooking, getUserBookings } = require('../controllers/booking');
+const {
+  addBooking,
+  getUserBookings,
+  removeBooking,
+} = require('../controllers/booking');
 const mapBooking = require('../helpers/mapBooking');
 const mapUserBooking = require('../helpers/mapUserBooking');
 
@@ -22,6 +26,12 @@ router.get('/', async (req, res) => {
   const userBookings = await getUserBookings(req.query.userId);
 
   res.send({ data: userBookings.map(mapUserBooking) });
+});
+
+router.delete('/:id', async (req, res) => {
+  const response = await removeBooking(req.params.id);
+
+  res.send({ data: response });
 });
 
 module.exports = router;

@@ -23,6 +23,12 @@ const UserSchema = new Schema(
       required: true,
       default: roles.USER,
     },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+      },
+    ],
   },
   { timestamps: true }
 );
