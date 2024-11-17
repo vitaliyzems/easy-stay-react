@@ -20,6 +20,12 @@ async function findAvailableHotels(startDateString, endDateString) {
   return availableHotels;
 }
 
+async function getRandomHotels() {
+  const randomHotels = await Hotel.aggregate([{ $sample: { size: 3 } }]);
+
+  return randomHotels;
+}
+
 async function getHotelWithAvailableRooms(
   hotelId,
   startDateString,
@@ -60,5 +66,6 @@ async function getHotelWithAvailableRooms(
 
 module.exports = {
   findAvailableHotels,
+  getRandomHotels,
   getHotelWithAvailableRooms,
 };

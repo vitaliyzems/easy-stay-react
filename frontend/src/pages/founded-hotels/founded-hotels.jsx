@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { HotelCard } from './components';
+import { HotelCard } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectHotels } from '../../selectors';
+import { selectHotels, selectHotelsLoading } from '../../selectors';
 import { CLOSE_MODAL, loadHotelsAsync, openModal } from '../../actions';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { SearchForm } from '../../components';
@@ -13,6 +13,7 @@ const FoundedHotelsContainer = ({ className }) => {
   const startDate = formatDate(searchParams.get('startDate'));
   const endDate = formatDate(searchParams.get('endDate'));
   const hotels = useSelector(selectHotels);
+  const loading = useSelector(selectHotelsLoading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,16 +45,20 @@ const FoundedHotelsContainer = ({ className }) => {
   return (
     <div className={className}>
       <SearchForm startDateProps={startDate} endDateProps={endDate} />
-      <div className="hotels-list">
-        {hotels.map((hotel) => (
-          <HotelCard
-            key={hotel.id}
-            hotel={hotel}
-            startDate={startDate}
-            endDate={endDate}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <h2>Загрузка...</h2>
+      ) : (
+        <div className="hotels-list">
+          {hotels.map((hotel) => (
+            <HotelCard
+              key={hotel.id}
+              hotel={hotel}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

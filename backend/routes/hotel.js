@@ -2,6 +2,7 @@ const express = require('express');
 const {
   findAvailableHotels,
   getHotelWithAvailableRooms,
+  getRandomHotels,
 } = require('../controllers/hotel');
 const mapHotel = require('../helpers/mapHotel');
 const mapHotelWithRooms = require('../helpers/mapHotelWithRooms');
@@ -15,6 +16,12 @@ router.get('/', async (req, res) => {
   );
 
   res.send({ data: availableHotels.map(mapHotel) });
+});
+
+router.get('/random', async (req, res) => {
+  const hotels = await getRandomHotels();
+
+  res.send({ data: hotels.map(mapHotel) });
 });
 
 router.get('/:id', async (req, res) => {

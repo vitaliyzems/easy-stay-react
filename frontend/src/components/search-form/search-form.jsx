@@ -35,36 +35,39 @@ const SearchFormContainer = ({
       setError('Укажите с какой даты по какую вы хотите найти отель');
       return;
     }
-    if (error) {
-      return;
-    }
     navigate(`/founded-hotels?startDate=${fromValue}&endDate=${toValue}`);
   };
 
   return (
-    <form className={className} onSubmit={submitHandle}>
-      <input
-        type="date"
-        min={formatDate(Date.now())}
-        value={fromValue}
-        onChange={onFromDateChange}
-      />
-      <input
-        type="date"
-        min={formatDate(Date.parse(fromValue) + 86400000)}
-        value={toValue}
-        onChange={({ target }) => setToValue(target.value)}
-      />
-      <span>{error}</span>
-      <input type="submit" value="Поиск..." />
-    </form>
+    <div className={className}>
+      <h1>Введите даты для поиска</h1>
+      <form onSubmit={submitHandle}>
+        <input
+          type="date"
+          min={formatDate(Date.now())}
+          value={fromValue}
+          onChange={onFromDateChange}
+        />
+        <input
+          type="date"
+          min={formatDate(Date.parse(fromValue) + 86400000)}
+          value={toValue}
+          onChange={({ target }) => setToValue(target.value)}
+        />
+        <input type="submit" value="Поиск..." />
+      </form>
+      {error && <span>{error}</span>}
+    </div>
   );
 };
 
 export const SearchForm = styled(SearchFormContainer)`
-  display: flex;
-  justify-content: space-between;
-  height: 40px;
+  & form {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 10px;
+  }
 
   & input {
     font-size: 18px;
@@ -85,5 +88,9 @@ export const SearchForm = styled(SearchFormContainer)`
 
   & input[type='submit'] {
     width: 200px;
+  }
+
+  & span {
+    color: red;
   }
 `;

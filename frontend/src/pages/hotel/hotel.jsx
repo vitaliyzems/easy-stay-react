@@ -29,32 +29,47 @@ const HotelContainer = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="hotel-content">
-        <img className="hotel-image" src={hotel.imageUrl} alt={hotel.name} />
-        <div>
-          <h3>{hotel.name}</h3>
-          <h4>{hotel.address}</h4>
-          <p>{DESCRIPTION_TEXT}</p>
-        </div>
-      </div>
-      <h4>
-        Доступные варианты c{' '}
-        {new Date(startDate).toLocaleDateString('KZ-kz', { dateStyle: 'long' })}{' '}
-        по{' '}
-        {new Date(endDate).toLocaleDateString('KZ-kz', { dateStyle: 'long' })}:
-      </h4>
-      <div>
-        {hotel.rooms.map((room) => (
-          <Room
-            room={room}
-            key={room.id}
-            hotel={hotel}
-            startDate={startDate}
-            endDate={endDate}
-          />
-        ))}
-      </div>
-      <Comments />
+      {hotel.loading ? (
+        <h2>Загрузка...</h2>
+      ) : (
+        <>
+          <div className="hotel-content">
+            <img
+              className="hotel-image"
+              src={hotel.imageUrl}
+              alt={hotel.name}
+            />
+            <div>
+              <h3>{hotel.name}</h3>
+              <h4>{hotel.address}</h4>
+              <p>{DESCRIPTION_TEXT}</p>
+            </div>
+          </div>
+          <h4>
+            Доступные варианты c{' '}
+            {new Date(startDate).toLocaleDateString('KZ-kz', {
+              dateStyle: 'long',
+            })}{' '}
+            по{' '}
+            {new Date(endDate).toLocaleDateString('KZ-kz', {
+              dateStyle: 'long',
+            })}
+            :
+          </h4>
+          <div>
+            {hotel.rooms.map((room) => (
+              <Room
+                room={room}
+                key={room.id}
+                hotel={hotel}
+                startDate={startDate}
+                endDate={endDate}
+              />
+            ))}
+          </div>
+          <Comments />
+        </>
+      )}
     </div>
   );
 };

@@ -7,12 +7,15 @@ const initialHotelState = {
   imageUrl: null,
   rooms: [],
   comments: [],
+  loading: false,
 };
 
 export const hotelReducer = (state = initialHotelState, { type, payload }) => {
   switch (type) {
+    case ACTION_TYPE.SET_HOTEL_LOADING:
+      return { ...state, loading: payload };
     case ACTION_TYPE.SET_HOTEL:
-      return { ...state, ...payload };
+      return { ...state, ...payload, loading: false };
     case ACTION_TYPE.RESET_HOTEL:
       return initialHotelState;
     case ACTION_TYPE.SET_COMMENT:

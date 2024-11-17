@@ -4,6 +4,7 @@ export * from './create-booking-async';
 export * from './create-comment-async';
 export * from './edit-comment-async';
 export * from './load-hotels-async';
+export * from './load-preview';
 export * from './load-user-bookings-async';
 export * from './logout';
 export * from './open-modal';

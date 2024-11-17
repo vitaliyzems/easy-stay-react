@@ -3,6 +3,7 @@ const {
   addComment,
   removeComment,
   editComment,
+  getRandomComments,
 } = require('../controllers/comment');
 const mapComment = require('../helpers/mapComment');
 
@@ -28,6 +29,12 @@ router.delete('/:id', async (req, res) => {
   const response = await removeComment(req.params.id);
 
   res.send({ data: response });
+});
+
+router.get('/random', async (req, res) => {
+  const randomComments = await getRandomComments();
+
+  res.send({ data: randomComments.map(mapComment) });
 });
 
 module.exports = router;

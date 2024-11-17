@@ -75,8 +75,29 @@ async function removeComment(id) {
   }
 }
 
+async function getRandomComments() {
+  // const randomComments = await Comment.aggregate([{ $sample: { size: 3 } }]);
+
+  const randomComments = await Comment.aggregate([
+    { $sample: { size: 3 } }, // Выбираем 3 случайных комментария
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'user',
+        foreignField: '_id',
+        as: 'user',
+      },
+    },
+    { $unwind: '$user' },
+    { $project: { 'user.name': 1, content: 1, createdAt: 1 } },
+  ]);
+
+  return randomComments;
+}
+
 module.exports = {
   addComment,
   editComment,
   removeComment,
+  getRandomComments,
 };
