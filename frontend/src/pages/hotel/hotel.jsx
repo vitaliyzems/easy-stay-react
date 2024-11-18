@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { useRequestServer } from '../../hooks';
 import { loadHotelAsync } from '../../actions/load-hotel-async';
 import { selectHotel } from '../../selectors/select-hotel';
 import { ACTION_TYPE } from '../../actions';
@@ -17,7 +16,6 @@ const HotelContainer = ({ className }) => {
   const endDate = searchParams.get('endDate');
 
   const dispatch = useDispatch();
-  const requestServer = useRequestServer();
 
   console.log(hotel);
 
@@ -25,7 +23,7 @@ const HotelContainer = ({ className }) => {
     dispatch(loadHotelAsync(id, startDate, endDate));
 
     return () => dispatch({ type: ACTION_TYPE.RESET_HOTEL });
-  }, [dispatch, requestServer, id, startDate, endDate]);
+  }, [dispatch, id, startDate, endDate]);
 
   return (
     <div className={className}>

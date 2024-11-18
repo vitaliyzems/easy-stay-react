@@ -15,14 +15,14 @@ app.use(express.json());
 
 app.use('/api', routes);
 
-// mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
-//   app.listen(port, () => {
-//     console.log(`Server started on port ${port}`);
-//   });
-// });
-
 mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
-  console.log(`Connected to MongoDB`);
+  app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });
 });
+
+// mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
+//   console.log(`Connected to MongoDB`);
+// });
 
 module.exports = { app };

@@ -75,6 +75,7 @@ const SignInContainer = ({ className, type, setType }) => {
       return (
         <Navigate
           to={`${location.state.from.pathname}${location.state.from.search}`}
+          state={location.state}
         />
       );
     }
