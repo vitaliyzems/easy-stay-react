@@ -4,6 +4,7 @@
   "description": "Backend for Easy-stay",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "author": "Vitaliy Zems <vitalyazems@gmail.com>",
