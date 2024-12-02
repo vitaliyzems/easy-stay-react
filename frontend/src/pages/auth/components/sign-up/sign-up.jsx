@@ -84,7 +84,7 @@ const SignUpContainer = ({ className, type, setType }) => {
   const errorMessage = formError || serverError;
 
   if (roleId !== ROLE.GUEST) {
-    if (location.state.from) {
+    if (location.state?.from) {
       return (
         <Navigate
           to={`${location.state.from.pathname}${location.state.from.search}`}
