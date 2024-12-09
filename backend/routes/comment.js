@@ -6,10 +6,13 @@ const {
   getRandomComments,
 } = require('../controllers/comment');
 const mapComment = require('../helpers/mapComment');
+const authenticated = require('../middlewares/authenticated');
+const hasRole = require('../middlewares/hasRole');
+const ROLES = require('../constants/roles');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticated, async (req, res) => {
   const newComment = await addComment(
     req.body.content,
     req.body.hotelId,
@@ -19,17 +22,22 @@ router.post('/', async (req, res) => {
   res.send({ data: mapComment(newComment) });
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', authenticated, async (req, res) => {
   const updatedComment = await editComment(req.params.id, req.body.content);
 
   res.send({ data: mapComment(updatedComment) });
 });
 
-router.delete('/:id', async (req, res) => {
-  const response = await removeComment(req.params.id);
+router.delete(
+  '/:id',
+  authenticated,
+  hasRole([ROLES.ADMIN, ROLES.USER]),
+  async (req, res) => {
+    const response = await removeComment(req.params.id);
 
-  res.send({ data: response });
-});
+    res.send({ data: response });
+  }
+);
 
 router.get('/random', async (req, res) => {
   const randomComments = await getRandomComments();

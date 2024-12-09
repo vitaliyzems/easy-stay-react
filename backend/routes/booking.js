@@ -6,10 +6,13 @@ const {
 } = require('../controllers/booking');
 const mapBooking = require('../helpers/mapBooking');
 const mapUserBooking = require('../helpers/mapUserBooking');
+const authenticated = require('../middlewares/authenticated');
+const hasRole = require('../middlewares/hasRole');
+const ROLES = require('../constants/roles');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticated, async (req, res) => {
   const newBooking = await addBooking({
     start_date: req.body.startDate,
     end_date: req.body.endDate,
@@ -22,16 +25,21 @@ router.post('/', async (req, res) => {
   res.send({ data: mapBooking(newBooking) });
 });
 
-router.get('/', async (req, res) => {
+router.get('/', authenticated, async (req, res) => {
   const userBookings = await getUserBookings(req.query.userId);
 
   res.send({ data: userBookings.map(mapUserBooking) });
 });
 
-router.delete('/:id', async (req, res) => {
-  const response = await removeBooking(req.params.id);
+router.delete(
+  '/:id',
+  authenticated,
+  hasRole([ROLES.ADMIN, ROLES.USER]),
+  async (req, res) => {
+    const response = await removeBooking(req.params.id);
 
-  res.send({ data: response });
-});
+    res.send({ data: response });
+  }
+);
 
 module.exports = router;

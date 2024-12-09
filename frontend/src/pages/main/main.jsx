@@ -8,6 +8,7 @@ import {
   selectHotelsLoading,
   selectRandomComments,
 } from '../../selectors';
+import { formatDate } from '../../utils';
 
 const MainContainer = ({ className }) => {
   const hotels = useSelector(selectHotels);
@@ -15,12 +16,16 @@ const MainContainer = ({ className }) => {
   const loading = useSelector(selectHotelsLoading);
   const dispatch = useDispatch();
 
+  const today = new Date();
+  const startDate = formatDate(today.getTime());
+
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+  const endDate = formatDate(tomorrow.getTime());
+
   useEffect(() => {
     dispatch(loadPreview());
   }, [dispatch]);
-
-  console.log(hotels);
-  console.log(comments);
 
   return (
     <div className={className}>
@@ -29,10 +34,16 @@ const MainContainer = ({ className }) => {
         <h2>Загрузка...</h2>
       ) : (
         <>
-          <h2>Отели которые ждут вас</h2>
+          <h2>Доступные варианты на ближайшие даты</h2>
           <div className="hotels-list">
             {hotels.map((hotel) => (
-              <HotelCard preview={true} key={hotel.id} hotel={hotel} />
+              <HotelCard
+                preview={true}
+                key={hotel.id}
+                hotel={hotel}
+                startDate={startDate}
+                endDate={endDate}
+              />
             ))}
           </div>
           <h2>Что говорят о нас наши постояльцы</h2>

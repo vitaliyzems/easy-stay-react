@@ -66,8 +66,6 @@ async function removeComment(id) {
       console.log('Comment not found');
       return { success: false, message: 'Comment not found' };
     }
-
-    console.log('Comment successfully deleted');
     return { success: true, message: 'Comment successfully deleted' };
   } catch (error) {
     console.error('Error deleting comment:', error);

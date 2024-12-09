@@ -6,17 +6,8 @@ const HotelCardContainer = ({
   hotel: { id, name, address, imageUrl },
   startDate,
   endDate,
-  preview = false,
 }) => {
-  return preview ? (
-    <div className={className}>
-      <img src={imageUrl} alt={imageUrl} />
-      <div className="card-footer">
-        <h4>{name}</h4>
-        <p>{address}</p>
-      </div>
-    </div>
-  ) : (
+  return (
     <Link
       to={`/hotel/${id}?startDate=${startDate}&endDate=${endDate}`}
       className={className}

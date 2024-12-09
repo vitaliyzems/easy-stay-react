@@ -1,9 +1,14 @@
 const Hotel = require('../models/Hotel');
 const Booking = require('../models/Booking');
 const Room = require('../models/Room');
+const { getRandomHotels } = require('../helpers/getRandomHotels');
 
 // find available hotels
-async function findAvailableHotels(startDateString, endDateString) {
+async function findAvailableHotels(
+  startDateString,
+  endDateString,
+  quantity = 0
+) {
   const startDate = new Date(startDateString);
   const endDate = new Date(endDateString);
 
@@ -17,13 +22,11 @@ async function findAvailableHotels(startDateString, endDateString) {
   const availableHotelIds = availableRooms.map((room) => room.hotel);
   const availableHotels = await Hotel.find({ _id: { $in: availableHotelIds } });
 
+  if (!!quantity) {
+    return getRandomHotels(availableHotels, quantity);
+  }
+
   return availableHotels;
-}
-
-async function getRandomHotels() {
-  const randomHotels = await Hotel.aggregate([{ $sample: { size: 3 } }]);
-
-  return randomHotels;
 }
 
 async function getHotelWithAvailableRooms(

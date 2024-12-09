@@ -33,7 +33,6 @@ async function removeBooking(id) {
       return { success: false, message: 'Booking not found' };
     }
 
-    console.log('Booking successfully deleted');
     return { success: true, message: 'Booking successfully deleted' };
   } catch (error) {
     console.error('Error deleting booking:', error);
